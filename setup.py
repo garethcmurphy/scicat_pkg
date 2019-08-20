@@ -3,7 +3,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
     name='scicat',
-    version='0.3',
+    version='0.4',
     author="Gareth Murphy",
     author_email="garethcmurphy@gmail.com",
     description="a scicat search package",

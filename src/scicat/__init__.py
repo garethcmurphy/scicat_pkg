@@ -1,1 +1,1 @@
-name = "scicat"
+from .search import search
