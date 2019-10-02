@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """fetch api"""
+
+
 class Api:
     """fetch api"""
 
@@ -16,14 +18,10 @@ class Api:
 
 
 def main():
+    """main"""
     api = Api()
     print(api.api)
 
+
 if __name__ == "__main__":
     main()
-
-
-        
-    
-
-    
