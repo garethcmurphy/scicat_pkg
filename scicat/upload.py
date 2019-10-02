@@ -2,7 +2,7 @@ import requests
 import json
 import urllib
 
-def search(text, max_number_results):
+def upload(text, max_number_results):
     fields = {'text': text}
     limit = {'limit': max_number_results, 'order': "creationTime:desc"}
     fields_encode = urllib.parse.quote(json.dumps(fields))
