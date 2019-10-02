@@ -1,14 +1,22 @@
+#!/usr/bin/env python3
+"""attach a file"""
 import requests
 import json
 import urllib
 
-def attach(text, max_number_results):
-    fields = {'text': text}
-    limit = {'limit': max_number_results, 'order': "creationTime:desc"}
-    fields_encode = urllib.parse.quote(json.dumps(fields))
-    limit_encode = urllib.parse.quote(json.dumps(limit))
-    dataset_url = "https://scicat.esss.se/api/v3/Datasets/anonymousquery?fields=" + \
-                fields_encode+"&limits="+limit_encode
-    r=requests.get(dataset_url).json()
-    print(len(r), "result found!")
-    return r
+
+class Attach:
+
+
+"""attach a file"""
+
+
+def attach(file, pid):
+        """attach a file"""
+        api = Api()
+        url = api.api
+
+
+def attach(file, pid):
+    """attach a file"""
+    # r=requests.post(dataset_url, json)

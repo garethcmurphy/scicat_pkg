@@ -1,5 +1,7 @@
-
+#!/usr/bin/env python3
+"""fetch api"""
 class Api:
+    """fetch api"""
 
     api = ""
     base = ""
@@ -9,9 +11,16 @@ class Api:
         self.api = self.base + "api/v3"
 
     def set_api(self, api):
+        """set api"""
         self.api = api
 
 
+def main():
+    api = Api()
+    print(api.api)
+
+if __name__ == "__main__":
+    main()
 
 
         
