@@ -5,10 +5,26 @@
 class Attach:
     """attach a file"""
 
+    def __init__(self):
+        self.file = ""
+        self.pid = ""
+
+    def create_json(self):
+        """create dict for attachment in scicat format"""
+        file_string = self.file
+        attachment = {
+            "thumbnail": file_string,
+            "caption": self.file,
+            "pid": self.pid
+        }
+        return attachment
+
     def attach(self, file, pid):
         """attach a file"""
-        print(file)
-        print(pid)
+        self.file = file
+        self.pid = pid
+        scicat_attachment = self.create_json()
+        print(scicat_attachment)
 
 
 def attach(file, pid):
