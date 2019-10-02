@@ -6,4 +6,4 @@ def test_answer():
     """test"""
     api = Api()
 
-    assert isinstance (api.api ,str)
+    assert isinstance(api.api, str)
