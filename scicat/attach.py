@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """attach a file"""
+from login import Login
 
 
 class Attach:
@@ -24,7 +25,10 @@ class Attach:
         self.file = file
         self.pid = pid
         scicat_attachment = self.create_json()
+        login = Login()
+        token = login.login()
         print(scicat_attachment)
+        print(token)
 
 
 def attach(file, pid):
