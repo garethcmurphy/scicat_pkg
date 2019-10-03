@@ -17,17 +17,17 @@ class Login:
         """login and return token"""
         credentials = {}
         try:
-            username = getpass.getuser()
+            self.username = getpass.getuser()
             # username = username.replace(".", "")
-            print("Username", username)
+            print("Username", self.username)
         except Exception as error:
-            username = input("Username:")
-        credentials["username"] = username
-        password = keyring.get_password('scicat', username)
+            self.username = input("Username:")
+        credentials["username"] = self.username
+        password = keyring.get_password('scicat', self.username)
         if not password:
             print("No password found in keychain, please enter it now to store it.")
             password = getpass.getpass()
-            keyring.set_password('scicat', username, password)
+            keyring.set_password('scicat', self.username, password)
         credentials["password"] = password
         api = Api()
         url = api.base + "auth/msad"
