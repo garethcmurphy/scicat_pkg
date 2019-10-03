@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""fetch api"""
+"""fetch api """
 
 
 class Api:
-    """fetch api"""
+    """ fetch api"""
 
     api = ""
     base = ""

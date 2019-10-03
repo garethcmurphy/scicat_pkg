@@ -14,6 +14,7 @@ class Login:
     password = ""
 
     def login(self):
+        """login and return token"""
         credentials = {}
         try:
             username = getpass.getuser()
