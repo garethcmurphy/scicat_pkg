@@ -1,14 +1,18 @@
-import requests
-import json
-import urllib
+#!/usr/bin/env python3
+"""upload to scicat"""
 
-def upload(text, max_number_results):
-    fields = {'text': text}
-    limit = {'limit': max_number_results, 'order': "creationTime:desc"}
-    fields_encode = urllib.parse.quote(json.dumps(fields))
-    limit_encode = urllib.parse.quote(json.dumps(limit))
-    dataset_url = "https://scicat.esss.se/api/v3/Datasets/anonymousquery?fields=" + \
-                fields_encode+"&limits="+limit_encode
-    r=requests.get(dataset_url).json()
-    print(len(r), "result found!")
-    return r
+def upload(name):
+    """upload to scicat"""
+    print("uploading to scicat")
+    dataset = {
+     "datasetName":name   
+    }
+    print(dataset)
+
+def main():
+    """main"""
+    name = "nexus"
+    upload(name)
+
+if __name__ == "__main__":
+    main()

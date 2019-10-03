@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""login and get token"""
 import getpass
 import requests
 import keyring
@@ -7,6 +8,7 @@ from api import Api
 
 
 class Login:
+    """login and get token"""
     token = ""
     username = ""
     password = ""
@@ -17,7 +19,7 @@ class Login:
             username = getpass.getuser()
             # username = username.replace(".", "")
             print("Username", username)
-        except:
+        except Exception as error:
             username = input("Username:")
         credentials["username"] = username
         password = keyring.get_password('scicat', username)
@@ -43,8 +45,8 @@ class Login:
 
 def login():
     """main login"""
-    login = Login()
-    login.login()
+    scicatlogin = Login()
+    scicatlogin.login()
 
 
 if __name__ == "__main__":
