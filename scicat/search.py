@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """search scicat"""
+import os
 import json
 import urllib
 
@@ -15,7 +16,7 @@ def search(text, max_number_results):
     fields_encode = urllib.parse.quote(json.dumps(fields))
     limit_encode = urllib.parse.quote(json.dumps(limit))
     api = Api()
-    dataset_url = api.api + "Datasets/anonymousquery?fields=" + \
+    dataset_url = os.path.join(api.api, "Datasets/anonymousquery?fields=") + \
         fields_encode+"&limits="+limit_encode
     response = requests.get(dataset_url).json()
     print(len(response), "result found!")
@@ -24,7 +25,7 @@ def search(text, max_number_results):
 
 def main():
     """main"""
-    search("v20",1)
+    search("v20", 1)
 
 
 if __name__ == "__main__":
