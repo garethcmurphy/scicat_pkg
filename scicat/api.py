@@ -10,7 +10,7 @@ class Api:
 
     def __init__(self):
         self.base = "https://scicat.esss.se/"
-        self.api = self.base + "api/v3"
+        self.api = self.base + "api/v3/"
 
     def set_api(self, api):
         """set api"""

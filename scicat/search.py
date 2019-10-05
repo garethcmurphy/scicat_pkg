@@ -5,6 +5,8 @@ import urllib
 
 import requests
 
+from api import Api
+
 
 def search(text, max_number_results):
     """search scicat"""
@@ -12,8 +14,18 @@ def search(text, max_number_results):
     limit = {'limit': max_number_results, 'order': "creationTime:desc"}
     fields_encode = urllib.parse.quote(json.dumps(fields))
     limit_encode = urllib.parse.quote(json.dumps(limit))
-    dataset_url = "https://scicat.esss.se/api/v3/Datasets/anonymousquery?fields=" + \
+    api = Api()
+    dataset_url = api.api + "Datasets/anonymousquery?fields=" + \
         fields_encode+"&limits="+limit_encode
     response = requests.get(dataset_url).json()
     print(len(response), "result found!")
     return response
+
+
+def main():
+    """main"""
+    search("v20",1)
+
+
+if __name__ == "__main__":
+    main()
