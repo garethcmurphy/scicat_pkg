@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """fetch api """
+import os
 
 
 class Api:
@@ -10,7 +11,7 @@ class Api:
 
     def __init__(self):
         self.base = "https://scitest.esss.lu.se/"
-        self.api = self.base + "api/v3/"
+        self.api = os.path.join(self.base, "api/v3/")
 
     def set_api(self, api):
         """set api"""

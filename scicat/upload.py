@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """upload to scicat"""
+import os
 import pwd
 import getpass
 import datetime
@@ -47,7 +48,7 @@ class Upload:
         login = Login()
         token = login.login()
         print(token)
-        uri = self.api + "Users/jwt" + "&access_token=" + token
+        uri = os.path.join(self.api, "Users/jwt") + "&access_token=" + token
         print(uri)
         response = requests.post(uri)
         print(response.json())
