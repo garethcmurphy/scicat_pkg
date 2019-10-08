@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """login and get token"""
 import os
+import sys
+
 import getpass
 import requests
 import keyring
@@ -42,7 +44,7 @@ class Login:
         else:
             print("Login failed")
             print(response.status_code)
-            exit()
+            sys.exit()
         if isinstance(result, str):
             print("token", token)
         else:

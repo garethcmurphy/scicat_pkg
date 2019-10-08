@@ -21,16 +21,16 @@ class Upload:
         username = getpass.getuser()
         pwd_struct = pwd.getpwnam(username)
         print(pwd_struct)
-        human_name = pwd_struct.pw_gecos.split(' ')
-        self.email = '.'.join(human_name) + "@esss.se"
+        self.human_name = pwd_struct.pw_gecos.split(' ')
+        self.email = '.'.join(self.human_name) + "@esss.se"
         print(self.email)
 
     def create_json(self):
         """create json"""
         date = datetime.datetime.now().isoformat()
         self.dataset = {
-            "pid": "10.17199/xlfghz",
-            "owner": "Egon Meier",
+            "pid": "xlfghz",
+            "owner": self.human_name,
             "ownerEmail": self.email,
             "contactEmail": self.email,
             "sourceFolder": "/dram/",
@@ -40,17 +40,21 @@ class Upload:
             ],
             "description": "Some fancy description",
             "isPublished": False,
-            "ownerGroup": "p34123"
+            "ownerGroup": "p34123",
+            "type": "raw"
         }
 
     def upload_scicat(self):
         """upload to scicat"""
-        login = Login()
-        token = login.login()
+        # login = Login()
+        # token = login.login()
+        token = "uhY29G8F1YecRNzSoKeVqxRL5SfYciPxTO0u7ZB6lzyB3Urfv8GZSiSodvORNTkc"
         print(token)
-        uri = os.path.join(self.api, "Users/jwt") + "&access_token=" + token
+        uri = os.path.join(self.api, "Datasets") + "?access_token=" + token
         print(uri)
-        response = requests.post(uri)
+        self.create_json()
+        response = requests.delete(uri)
+        response = requests.post(uri, json=self.dataset)
         print(response.json())
 
 
