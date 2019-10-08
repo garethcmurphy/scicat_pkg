@@ -36,10 +36,11 @@ class Login:
         result = response.json()
         print(result)
         token = ""
-        if isinstance(token, str):
-            print(token)
+        if isinstance(result, str):
+            print("token", token)
         else:
             token = result.get("access_token")
+            print("token", token)
 
         return token
 
