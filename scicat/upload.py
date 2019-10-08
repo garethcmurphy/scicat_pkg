@@ -4,6 +4,7 @@ import os
 import pwd
 import getpass
 import datetime
+import urllib
 
 import requests
 
@@ -21,8 +22,9 @@ class Upload:
         username = getpass.getuser()
         pwd_struct = pwd.getpwnam(username)
         print(pwd_struct)
-        self.human_name = pwd_struct.pw_gecos.split(' ')
-        self.email = '.'.join(self.human_name) + "@esss.se"
+        self.human_name = pwd_struct.pw_gecos
+        split_name = pwd_struct.pw_gecos.split(' ')
+        self.email = '.'.join(split_name) + "@esss.se"
         print(self.email)
 
     def create_json(self):
@@ -34,11 +36,12 @@ class Upload:
             "ownerEmail": self.email,
             "contactEmail": self.email,
             "sourceFolder": "/dram/",
+            "datasetName": "Test python upload",
             "creationTime": date,
             "keywords": [
                 "Test", "Derived", "Science", "Math"
             ],
-            "description": "Some fancy description",
+            "description": "Test uploaded metadata from python",
             "isPublished": False,
             "ownerGroup": "p34123",
             "type": "raw"
@@ -53,7 +56,12 @@ class Upload:
         uri = os.path.join(self.api, "Datasets") + "?access_token=" + token
         print(uri)
         self.create_json()
-        response = requests.delete(uri)
+        pid = urllib.parse.quote_plus("20.500.12269/"+self.dataset["pid"])
+        delete_uri = os.path.join(
+            self.api, "Datasets", pid) + "?access_token=" + token
+        response = requests.delete(delete_uri)
+        print(delete_uri)
+        print(response.json())
         response = requests.post(uri, json=self.dataset)
         print(response.json())
 
