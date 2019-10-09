@@ -20,8 +20,8 @@ class Attach:
         self.pid = ""
         self.token = ""
         self.attachment = {}
-        api = api.Api()
-        self.api = api.api
+        apix = api.Api()
+        self.api = apix.api
 
     def get_token(self):
         """get scicat token"""

@@ -20,8 +20,8 @@ class Upload:
     delete_uri = ""
 
     def __init__(self):
-        api = api.Api()
-        self.api = api.api
+        apix = api.Api()
+        self.api = apix.api
         username = getpass.getuser()
         pwd_struct = pwd.getpwnam(username)
         print(pwd_struct)
