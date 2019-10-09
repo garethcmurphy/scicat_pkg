@@ -34,8 +34,6 @@ class Attach:
             "?access_token=" + self.token
         print(self.uri)
 
-    def base64_encode(self):
-        """base 64 encode"""
 
     def create_json(self):
         """create dict for attachment in scicat format"""
