@@ -6,6 +6,7 @@ import requests
 
 from login import Login
 from api import Api
+from base64_im import Base64Im
 
 
 class Attach:
@@ -39,7 +40,9 @@ class Attach:
 
     def create_json(self):
         """create dict for attachment in scicat format"""
-        file_string = self.file
+        base64im = Base64Im()
+
+        file_string = base64im.image
         self.attachment = {
             "thumbnail": file_string,
             "caption": self.file,
