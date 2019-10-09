@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """login and get token"""
+import os
+import sys
+
 import getpass
 import requests
 import keyring
@@ -30,16 +33,23 @@ class Login:
             keyring.set_password('scicat', self.username, password)
         credentials["password"] = password
         api = Api()
-        url = api.base + "auth/msad"
+        url = os.path.join(api.base, "auth/msad")
         token = ""
         response = requests.post(url, json=credentials)
         result = response.json()
         print(result)
         token = ""
-        if isinstance(token, str):
-            print(token)
+        if response.status_code == 200:
+            pass
+        else:
+            print("Login failed")
+            print(response.status_code)
+            sys.exit()
+        if isinstance(result, str):
+            print("token", token)
         else:
             token = result.get("access_token")
+            print("token", token)
 
         return token
 

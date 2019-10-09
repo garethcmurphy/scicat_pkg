@@ -2,7 +2,7 @@
 from api import Api
 
 
-def test_answer():
+def test_api():
     """test"""
     api = Api()
 

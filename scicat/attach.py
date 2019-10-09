@@ -1,47 +1,78 @@
 #!/usr/bin/env python3
 """attach a file"""
+import os
+import urllib
+
+import requests
+
 from login import Login
+from api import Api
+from base64_im import Base64Im
 
 
 class Attach:
     """attach a file"""
+    uri = ""
+    api = ""
 
     def __init__(self):
         self.file = ""
         self.pid = ""
+        self.token = ""
+        self.attachment = {}
+        api = Api()
+        self.api = api.api
+
+    def get_token(self):
+        """get scicat token"""
+        self.token = "uhY29G8F1YecRNzSoKeVqxRL5SfYciPxTO0u7ZB6lzyB3Urfv8GZSiSodvORNTkc"
+        print(self.token)
+
+    def create_uri(self):
+        """create uri"""
+        # login = Login()
+        # token = login.login()
+        pid_string = urllib.parse.quote_plus(self.pid)
+        self.uri = os.path.join(self.api, "Datasets", pid_string, "attachments") + \
+            "?access_token=" + self.token
+        print(self.uri)
+
+    def base64_encode(self):
+        """base 64 encode"""
 
     def create_json(self):
         """create dict for attachment in scicat format"""
-        file_string = self.file
-        attachment = {
+        base64im = Base64Im()
+        base64im.convert(self.file)
+
+        file_string = base64im.image
+        self.attachment = {
             "thumbnail": file_string,
             "caption": self.file,
-            "pid": self.pid
+            "datasetId": self.pid
         }
-        return attachment
 
     def attach(self, file, pid):
         """attach a file"""
         self.file = file
         self.pid = pid
-        scicat_attachment = self.create_json()
-        login = Login()
-        token = login.login()
-        print(scicat_attachment)
-        print(token)
+        self.get_token()
+        self.create_uri()
+        self.create_json()
+        response = requests.post(self.uri, json=self.attachment)
+        print(response.json())
 
 
 def attach(file, pid):
     """attach a file"""
     attachment = Attach()
     attachment.attach(file, pid)
-    # r=requests.post(dataset_url, json)
 
 
 def main():
     """main"""
-    file = "im.jpg"
-    pid = "10.18390/fhuieraehiru"
+    file = "raw_data_3D_detectors.png"
+    pid = "20.500.12269/xlfghz"
     attach(file, pid)
 
 
