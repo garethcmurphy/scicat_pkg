@@ -15,6 +15,9 @@ from login import Login
 class Upload:
     """upload"""
     dataset = {}
+    token = ""
+    uri = ""
+    delete_uri = ""
 
     def __init__(self):
         api = Api()
@@ -39,30 +42,38 @@ class Upload:
             "datasetName": "Test python upload",
             "creationTime": date,
             "keywords": [
-                "Test", "Derived", "Science", "Math"
+                "Test", "Derived", "Science"
             ],
             "description": "Test uploaded metadata from python",
             "isPublished": False,
             "ownerGroup": "p34123",
             "type": "raw"
         }
+    
+    def get_token(self):
+        """get scicat token"""
+        self.token = "uhY29G8F1YecRNzSoKeVqxRL5SfYciPxTO0u7ZB6lzyB3Urfv8GZSiSodvORNTkc"
+        print(self.token)
+
+    def create_uri(self):
+        """create uri"""
+        # login = Login()
+        # token = login.login()
+        self.uri = os.path.join(self.api, "Datasets") + "?access_token=" + self.token
+        print(self.uri)
 
     def upload_scicat(self):
         """upload to scicat"""
-        # login = Login()
-        # token = login.login()
-        token = "uhY29G8F1YecRNzSoKeVqxRL5SfYciPxTO0u7ZB6lzyB3Urfv8GZSiSodvORNTkc"
-        print(token)
-        uri = os.path.join(self.api, "Datasets") + "?access_token=" + token
-        print(uri)
+        self.get_token()
+        self.create_uri()
         self.create_json()
         pid = urllib.parse.quote_plus("20.500.12269/"+self.dataset["pid"])
         delete_uri = os.path.join(
-            self.api, "Datasets", pid) + "?access_token=" + token
+            self.api, "Datasets", pid) + "?access_token=" + self.token
         response = requests.delete(delete_uri)
         print(delete_uri)
         print(response.json())
-        response = requests.post(uri, json=self.dataset)
+        response = requests.post(self.uri, json=self.dataset)
         print(response.json())
 
 
