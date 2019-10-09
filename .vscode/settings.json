@@ -13,5 +13,6 @@
         "statusBarItem.hoverBackground": "#322e15",
         "statusBar.foreground": "#e7e7e7"
     },
-    "peacock.color": "#0e0d06"
+    "peacock.color": "#0e0d06",
+    "python.pythonPath": "/Users/gmurphy/.local/share/virtualenvs/scicat_pkg-g-6r3lGS/bin/python"
 }
