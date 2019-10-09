@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """attach a file"""
 import os
+import urllib
 
 import requests
 
@@ -31,7 +32,8 @@ class Attach:
         """create uri"""
         # login = Login()
         # token = login.login()
-        self.uri = os.path.join(self.api, "Datasets") + \
+        pid_string = urllib.parse.quote_plus(self.pid)
+        self.uri = os.path.join(self.api, "Datasets", pid_string, "attachments") + \
             "?access_token=" + self.token
         print(self.uri)
 
@@ -53,11 +55,13 @@ class Attach:
         """attach a file"""
         self.file = file
         self.pid = pid
+        self.get_token()
         self.create_uri()
         self.create_json()
-        print(self.attachment)
+        # print(self.attachment)
         print(self.token)
         response = requests.post(self.uri, json=self.attachment)
+        print(response.json())
 
 
 def attach(file, pid):
@@ -69,7 +73,7 @@ def attach(file, pid):
 def main():
     """main"""
     file = "im.jpg"
-    pid = "10.18390/fhuieraehiru"
+    pid = "20.500.12269/xlfghz"
     attach(file, pid)
 
 
