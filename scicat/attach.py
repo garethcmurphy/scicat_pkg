@@ -2,6 +2,8 @@
 """attach a file"""
 import os
 
+import requests
+
 from login import Login
 from api import Api
 
@@ -32,29 +34,33 @@ class Attach:
             "?access_token=" + self.token
         print(self.uri)
 
+    def base64_encode(self):
+        """base 64 encode"""
+
     def create_json(self):
         """create dict for attachment in scicat format"""
         file_string = self.file
         self.attachment = {
             "thumbnail": file_string,
             "caption": self.file,
-            "pid": self.pid
+            "datasetId": self.pid
         }
 
     def attach(self, file, pid):
         """attach a file"""
         self.file = file
         self.pid = pid
+        self.create_uri()
         self.create_json()
         print(self.attachment)
         print(self.token)
+        response = requests.post(self.uri, json=self.attachment)
 
 
 def attach(file, pid):
     """attach a file"""
     attachment = Attach()
     attachment.attach(file, pid)
-    # r=requests.post(dataset_url, json)
 
 
 def main():
