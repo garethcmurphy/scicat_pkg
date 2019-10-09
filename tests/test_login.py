@@ -2,7 +2,7 @@
 from login import Login
 
 
-def test_answer():
+def test_login():
     """test"""
     login = Login()
 

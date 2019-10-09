@@ -2,8 +2,7 @@
 from upload import Upload
 
 
-def test_answer():
+def test_upload():
     """upload"""
-    api = Upload()
-
-    assert isinstance(api.dataset, dict)
+    upload = Upload()
+    assert isinstance(upload.dataset, dict)

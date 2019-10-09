@@ -2,7 +2,7 @@
 from attach import Attach
 
 
-def test_answer():
+def test_attach():
     """test"""
     attach = Attach()
 

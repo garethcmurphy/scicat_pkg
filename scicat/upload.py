@@ -49,7 +49,7 @@ class Upload:
             "ownerGroup": "p34123",
             "type": "raw"
         }
-    
+
     def get_token(self):
         """get scicat token"""
         self.token = "uhY29G8F1YecRNzSoKeVqxRL5SfYciPxTO0u7ZB6lzyB3Urfv8GZSiSodvORNTkc"
@@ -59,7 +59,8 @@ class Upload:
         """create uri"""
         # login = Login()
         # token = login.login()
-        self.uri = os.path.join(self.api, "Datasets") + "?access_token=" + self.token
+        self.uri = os.path.join(self.api, "Datasets") + \
+            "?access_token=" + self.token
         print(self.uri)
 
     def upload_scicat(self):
