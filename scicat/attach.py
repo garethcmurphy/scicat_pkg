@@ -5,7 +5,6 @@ import urllib
 
 import requests
 
-from scicat import login
 from scicat import api
 from scicat import base64_im
 
@@ -30,8 +29,6 @@ class Attach:
 
     def create_uri(self):
         """create uri"""
-        # login = Login()
-        # token = login.login()
         pid_string = urllib.parse.quote_plus(self.pid)
         self.uri = os.path.join(self.api, "Datasets", pid_string, "attachments") + \
             "?access_token=" + self.token

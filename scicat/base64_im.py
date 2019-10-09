@@ -24,6 +24,11 @@ class Base64Im:
             self.image = self.header + image_str
 
 
-if __name__ == '__main__':
+def main():
+    """main"""
     BASE = Base64Im()
     print(BASE.image[0:50])
+
+
+if __name__ == '__main__':
+    main()

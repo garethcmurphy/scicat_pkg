@@ -24,6 +24,7 @@ class Login:
             # username = username.replace(".", "")
             print("Username", self.username)
         except Exception as error:
+            print(error)
             self.username = input("Username:")
         credentials["username"] = self.username
         password = keyring.get_password('scicat', self.username)
