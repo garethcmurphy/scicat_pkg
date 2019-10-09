@@ -5,9 +5,9 @@ import urllib
 
 import requests
 
-from scicat import Login
-from scicat import Api
-from scicat import Base64Im
+from scicat import login
+from scicat import api
+from scicat import base64_im
 
 
 class Attach:
@@ -20,7 +20,7 @@ class Attach:
         self.pid = ""
         self.token = ""
         self.attachment = {}
-        api = Api()
+        api = api.Api()
         self.api = api.api
 
     def get_token(self):
@@ -42,7 +42,7 @@ class Attach:
 
     def create_json(self):
         """create dict for attachment in scicat format"""
-        base64im = Base64Im()
+        base64im = base64_im.Base64Im()
         base64im.convert(self.file)
 
         file_string = base64im.image

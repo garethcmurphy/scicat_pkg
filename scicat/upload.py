@@ -8,8 +8,8 @@ import urllib
 
 import requests
 
-from scicat import Api
-from scicat import Login
+from scicat import api
+from scicat import login
 
 
 class Upload:
@@ -20,7 +20,7 @@ class Upload:
     delete_uri = ""
 
     def __init__(self):
-        api = Api()
+        api = api.Api()
         self.api = api.api
         username = getpass.getuser()
         pwd_struct = pwd.getpwnam(username)
