@@ -59,8 +59,6 @@ class Attach:
         self.get_token()
         self.create_uri()
         self.create_json()
-        # print(self.attachment)
-        print(self.token)
         response = requests.post(self.uri, json=self.attachment)
         print(response.json())
 
