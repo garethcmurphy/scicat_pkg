@@ -18,5 +18,6 @@ def test_uri():
 def test_json():
     """test uri"""
     attach = Attach()
+    attach.file = "raw_data_3D_detectors.png"
     attach.create_json()
     assert isinstance(attach.attachment, dict)
