@@ -8,8 +8,8 @@ import urllib
 
 import requests
 
-from api import Api
-from login import Login
+from scicat import Api
+from scicat import Login
 
 
 class Upload:

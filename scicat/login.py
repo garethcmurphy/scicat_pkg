@@ -7,7 +7,7 @@ import getpass
 import requests
 import keyring
 
-from api import Api
+from scicat import Api
 
 
 class Login:

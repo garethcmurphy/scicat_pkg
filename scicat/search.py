@@ -6,7 +6,7 @@ import urllib
 
 import requests
 
-from api import Api
+from scicat import Api
 
 
 def search(text, max_number_results):

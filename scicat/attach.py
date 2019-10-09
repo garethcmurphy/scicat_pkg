@@ -5,9 +5,9 @@ import urllib
 
 import requests
 
-from login import Login
-from api import Api
-from base64_im import Base64Im
+from scicat import Login
+from scicat import Api
+from scicat import Base64Im
 
 
 class Attach:
