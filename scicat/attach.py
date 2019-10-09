@@ -1,21 +1,36 @@
 #!/usr/bin/env python3
 """attach a file"""
+import os
+
 from login import Login
+from api import Api
 
 
 class Attach:
     """attach a file"""
+    uri = ""
+    api = ""
 
     def __init__(self):
         self.file = ""
         self.pid = ""
         self.token = ""
         self.attachment = {}
+        api = Api()
+        self.api = api.api
 
     def get_token(self):
         """get scicat token"""
         self.token = "uhY29G8F1YecRNzSoKeVqxRL5SfYciPxTO0u7ZB6lzyB3Urfv8GZSiSodvORNTkc"
         print(self.token)
+
+    def create_uri(self):
+        """create uri"""
+        # login = Login()
+        # token = login.login()
+        self.uri = os.path.join(self.api, "Datasets") + \
+            "?access_token=" + self.token
+        print(self.uri)
 
     def create_json(self):
         """create dict for attachment in scicat format"""
