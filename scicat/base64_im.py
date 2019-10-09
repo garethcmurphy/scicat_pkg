@@ -7,7 +7,7 @@ class Base64Im:
     """generate base64 image"""
     filename = "raw_data_3D_detectors.png"
     image = ""
-    header = ""
+    header = "data:image/png;base64,"
 
     def set_filename(self, filename):
         """set filename"""
@@ -15,7 +15,6 @@ class Base64Im:
 
     def convert(self, filename="raw_data_3D_detectors.png"):
         """convert image"""
-        self.header = "data:image/png;base64,"
         self.filename = filename
         with open(self.filename, "rb") as image_file:
             data = image_file.read()
@@ -26,8 +25,8 @@ class Base64Im:
 
 def main():
     """main"""
-    BASE = Base64Im()
-    print(BASE.image[0:50])
+    base = Base64Im()
+    print(base.image[0:50])
 
 
 if __name__ == '__main__':
