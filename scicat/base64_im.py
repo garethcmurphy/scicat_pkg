@@ -4,9 +4,17 @@ import base64
 
 
 class Base64Im:
-    filename = "raw_data_3D_detectors.png"
     """generate base64 image"""
-    def __init__(self):
+    filename = "raw_data_3D_detectors.png"
+    image = ""
+    header = ""
+
+    def set_filename(self, filename):
+        """set filename"""
+        self.filename = filename
+
+    def convert(self, filename):
+        """convert image"""
         self.header = "data:image/png;base64,"
         with open(self.filename, "rb") as image_file:
             data = image_file.read()

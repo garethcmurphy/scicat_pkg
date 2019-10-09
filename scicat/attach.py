@@ -43,6 +43,7 @@ class Attach:
     def create_json(self):
         """create dict for attachment in scicat format"""
         base64im = Base64Im()
+        base64im.convert(self.file)
 
         file_string = base64im.image
         self.attachment = {
@@ -72,7 +73,7 @@ def attach(file, pid):
 
 def main():
     """main"""
-    file = "im.jpg"
+    file = "raw_data_3D_detectors.png"
     pid = "20.500.12269/xlfghz"
     attach(file, pid)
 
