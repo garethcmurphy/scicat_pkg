@@ -35,18 +35,17 @@ class Attach:
     def create_json(self):
         """create dict for attachment in scicat format"""
         file_string = self.file
-        attachment = {
+        self.attachment = {
             "thumbnail": file_string,
             "caption": self.file,
             "pid": self.pid
         }
-        return attachment
 
     def attach(self, file, pid):
         """attach a file"""
         self.file = file
         self.pid = pid
-        self.attachment = self.create_json()
+        self.create_json()
         print(self.attachment)
         print(self.token)
 
