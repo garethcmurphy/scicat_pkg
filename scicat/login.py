@@ -18,8 +18,8 @@ class Login:
 
     def get_username(self):
         """get username"""
-        if "JUPYTERHUBUSER" in os.environ:
-            self.username = os.environ["JUPYTERHUBUSER"]
+        if "JUPYTERHUB_USER" in os.environ:
+            self.username = os.environ["JUPYTERHUB_USER"]
         else:
             try:
                 self.username = getpass.getuser()
@@ -29,7 +29,6 @@ class Login:
                 print(error)
                 self.username = input("Username:")
 
-        
     def login(self):
         """login and return token"""
         credentials = {}
