@@ -52,6 +52,7 @@ class Login:
         else:
             print("Login failed")
             print(response.status_code)
+            return token
         if isinstance(result, str):
             print("token", token)
         else:
