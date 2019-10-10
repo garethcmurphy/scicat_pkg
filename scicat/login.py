@@ -16,16 +16,24 @@ class Login:
     username = ""
     password = ""
 
+    def get_username(self):
+        """get username"""
+        if "JUPYTERHUBUSER" in os.environ:
+            self.username = os.environ["JUPYTERHUBUSER"]
+        else:
+            try:
+                self.username = getpass.getuser()
+                # username = username.replace(".", "")
+                print("Username", self.username)
+            except Exception as error:
+                print(error)
+                self.username = input("Username:")
+
+        
     def login(self):
         """login and return token"""
         credentials = {}
-        try:
-            self.username = getpass.getuser()
-            # username = username.replace(".", "")
-            print("Username", self.username)
-        except Exception as error:
-            print(error)
-            self.username = input("Username:")
+        self.get_username()
         credentials["username"] = self.username
         password = keyring.get_password('scicat', self.username)
         if not password:
