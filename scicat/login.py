@@ -52,7 +52,6 @@ class Login:
         else:
             print("Login failed")
             print(response.status_code)
-            sys.exit()
         if isinstance(result, str):
             print("token", token)
         else:
