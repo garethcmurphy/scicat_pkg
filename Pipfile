@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 requests = "*"
 keyring = "*"
+ipywidgets = "*"
 
 [dev-packages]
 pylint = "*"
