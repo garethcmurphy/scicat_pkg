@@ -133,6 +133,9 @@ def upload(name):
 
     print(dataset)
 
+def widget():
+    uploader = Upload()
+    upload.widget()
 
 def main():
     """main"""
