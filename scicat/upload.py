@@ -86,28 +86,38 @@ class Upload:
         style = {'description_width': '150px', 'width': '200px'}
         layout = {'width': '500px'}
 
-        dataset_name = ipywidgets.Text(value='Reduced neutron data', placeholder='Reduced neutron data',
-                                       description='dataset Name:', disabled=False, style=style, layout=layout)
+        dataset_name = ipywidgets.Text(value='Reduced neutron data',
+                                       placeholder='Reduced neutron data',
+                                       description='dataset Name:', disabled=False,
+                                       style=style, layout=layout)
         software_used = ipywidgets.Text(value='Mantid v4.0', placeholder='Mantid',
-                                        description='Software used:', disabled=False, style=style, layout=layout)
+                                        description='Software used:', disabled=False,
+                                        style=style, layout=layout)
         email = ipywidgets.Text(value=self.email, placeholder=self.email,
-                                description='Email:', disabled=False, style=style, layout=layout)
+                                description='Email:', disabled=False,
+                                style=style, layout=layout)
         username = ipywidgets.Text(value=self.owner, placeholder=self.owner,
-                                   description='Username:', disabled=False, style=style, layout=layout)
+                                   description='Username:', disabled=False,
+                                   style=style, layout=layout)
         orcid = ipywidgets.Text(value='', placeholder='orcid',
-                                description='ORCiD:', disabled=False, style=style, layout=layout)
+                                description='ORCiD:', disabled=False,
+                                style=style, layout=layout)
         source_folder = ipywidgets.Text(value='/nfs/dram', placeholder='/nfs/dram',
-                                       description='Source Folder', disabled=False, style=style, layout=layout)
+                                        description='Source Folder', disabled=False,
+                                        style=style, layout=layout)
         description = ipywidgets.Text(value='Reduced neutron data', placeholder='Reduced neutron data',
-                                      description='Description:', disabled=False, style=style, layout=layout)
+                                      description='Description:', disabled=False,
+                                      style=style, layout=layout)
         group = ipywidgets.Text(value=self.owner_group, placeholder=self.owner_group,
-                                description='Group', disabled=False, style=style, layout=layout)
+                                description='Group', disabled=False,
+                                style=style, layout=layout)
 
         upload_widget = ipywidgets.interactive(self.helper, a=dataset_name, b=software_used,
-                                   c=email, d=username, e=orcid, f=source_folder, g=group)
+                                               c=email, d=username, e=orcid, f=source_folder,
+                                               g=group, h=description)
         display(upload_widget)
 
-    def helper(self, a, b, c, d, e, f, g):
+    def helper(self, a, b, c, d, e, f, g, h):
         """helper"""
 
 
