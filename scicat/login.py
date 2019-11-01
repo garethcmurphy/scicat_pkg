@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """login and get token"""
 import os
-import sys
 
 import getpass
 import requests
@@ -61,12 +60,43 @@ class Login:
 
         return token
 
+    def info(self):
+        """get info"""
+        if self.token == "":
+            self.login()
+        api = Api()
+        url = api.base + "Users/userInfos?access_token" + self.token
+        print(url)
+        response = requests.get(url)
+        print(response)
+        print(response.json())
+        return info
+
 
 def login():
     """main login"""
     scicatlogin = Login()
     scicatlogin.login()
+    return scicatlogin.token
+
+
+def accesstoken():
+    """get token"""
+    scicatlogin = Login()
+    if scicatlogin.token == "":
+        scicatlogin.login()
+    return scicatlogin.token
+
+
+def userinfo():
+    """get info"""
+    scicatlogin = Login()
+    if scicatlogin.token == "":
+        print("loggin in")
+        scicatlogin.login()
+        print(scicatlogin.token)
+    scicatlogin.info()
 
 
 if __name__ == "__main__":
-    login()
+    userinfo()

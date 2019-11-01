@@ -10,7 +10,7 @@ class Api:
     base = ""
 
     def __init__(self):
-        self.base = "https://scitest.esss.lu.se/"
+        self.base = "https://scicat.esss.se/"
         self.api = os.path.join(self.base, "api/v3/")
 
     def set_api(self, api):
