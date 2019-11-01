@@ -6,10 +6,10 @@ import getpass
 import requests
 import keyring
 
-from scicat import Api
+from scicat import api
 
 
-class Login:
+class LoginManager:
     """login and get token"""
     token = ""
     username = ""
@@ -22,7 +22,7 @@ class Login:
         else:
             try:
                 self.username = getpass.getuser()
-                # username = username.replace(".", "")
+                self.username = self.username.replace(".", "")
                 print("Username", self.username)
             except Exception as error:
                 print(error)
@@ -39,12 +39,12 @@ class Login:
             password = getpass.getpass()
             keyring.set_password('scicat', self.username, password)
         credentials["password"] = password
-        api = Api()
-        url = os.path.join(api.base, "auth/msad")
+        apix = api.Api()
+        url = os.path.join(apix.base, "auth/msad")
         token = ""
         response = requests.post(url, json=credentials)
         result = response.json()
-        print(result)
+        # print(result)
         token = ""
         if response.status_code == 200:
             pass
@@ -53,36 +53,36 @@ class Login:
             print(response.status_code)
             return token
         if isinstance(result, str):
-            print("token", token)
+            pass
+            # print("token", token)
         else:
             token = result.get("access_token")
-            print("token", token)
-
+            # print("token", token)
+        self.token = token
         return token
 
     def info(self):
         """get info"""
         if self.token == "":
             self.login()
-        api = Api()
-        url = api.base + "Users/userInfos?access_token" + self.token
-        print(url)
+        apix = api.Api()
+        url = apix.api + "Users/userInfos?access_token=" + self.token
         response = requests.get(url)
-        print(response)
-        print(response.json())
+        requests.get(url)
+        info = response.json()
         return info
 
 
 def login():
     """main login"""
-    scicatlogin = Login()
+    scicatlogin = LoginManager()
     scicatlogin.login()
     return scicatlogin.token
 
 
 def accesstoken():
     """get token"""
-    scicatlogin = Login()
+    scicatlogin = LoginManager()
     if scicatlogin.token == "":
         scicatlogin.login()
     return scicatlogin.token
@@ -90,12 +90,13 @@ def accesstoken():
 
 def userinfo():
     """get info"""
-    scicatlogin = Login()
+    scicatlogin = LoginManager()
     if scicatlogin.token == "":
-        print("loggin in")
+        # print("logging in")
         scicatlogin.login()
-        print(scicatlogin.token)
-    scicatlogin.info()
+        # print(scicatlogin.token)
+    info = scicatlogin.info()
+    return info
 
 
 if __name__ == "__main__":

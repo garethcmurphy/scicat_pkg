@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """upload to scicat"""
 import os
-import pwd
-import getpass
 import datetime
 import urllib
 
@@ -10,6 +8,7 @@ import requests
 
 from scicat import api
 from scicat import login
+from scicat.login import LoginManager
 
 
 class Upload:
@@ -18,24 +17,26 @@ class Upload:
     token = ""
     uri = ""
     delete_uri = ""
+    email = ""
+    owner = ""
+    ownerGroup = ""
 
     def __init__(self):
         apix = api.Api()
         self.api = apix.api
-        username = getpass.getuser()
-        pwd_struct = pwd.getpwnam(username)
-        print(pwd_struct)
-        self.human_name = pwd_struct.pw_gecos
-        split_name = pwd_struct.pw_gecos.split(' ')
-        self.email = '.'.join(split_name) + "@esss.se"
-        print(self.email)
+        loginx = LoginManager()
+        userinfo = loginx.info()
+        self.email = userinfo["currentUserEmail"]
+        self.owner = userinfo["currentUser"]
+        groups = userinfo["currentGroups"]
+        self.ownerGroup = groups[0]
 
     def create_json(self):
         """create json"""
         date = datetime.datetime.now().isoformat()
         self.dataset = {
             "pid": "xlfghz",
-            "owner": self.human_name,
+            "owner": self.owner,
             "ownerEmail": self.email,
             "contactEmail": self.email,
             "sourceFolder": "/dram/",
@@ -46,14 +47,15 @@ class Upload:
             ],
             "description": "Test uploaded metadata from python",
             "isPublished": False,
-            "ownerGroup": "p34123",
+            "ownerGroup": self.ownerGroup,
             "type": "raw"
         }
 
     def get_token(self):
         """get scicat token"""
-        self.token = "uhY29G8F1YecRNzSoKeVqxRL5SfYciPxTO0u7ZB6lzyB3Urfv8GZSiSodvORNTkc"
-        print(self.token)
+        loginx = LoginManager()
+        self.token = loginx.login()
+        print("token", self.token)
 
     def create_uri(self):
         """create uri"""
@@ -78,6 +80,10 @@ class Upload:
         print(response.json())
 
 
+    def widget(self):
+        """upload widget"""
+        
+
 def upload(name):
     """upload to scicat"""
     print("uploading to scicat")
@@ -85,6 +91,7 @@ def upload(name):
         "datasetName": name
     }
     uploader = Upload()
+    uploader.get_token()
     uploader.upload_scicat()
 
     print(dataset)

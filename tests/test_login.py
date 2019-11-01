@@ -1,10 +1,10 @@
 """test"""
-from login import Login
+from login import LoginManager
 
 
 def test_login():
     """test"""
-    login = Login()
+    login = LoginManager()
 
     assert isinstance(login.token, str)
     assert isinstance(login.username, str)
