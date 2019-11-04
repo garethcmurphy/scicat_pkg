@@ -135,7 +135,7 @@ def upload(name):
 
 def widget():
     uploader = Upload()
-    upload.widget()
+    uploader.widget()
 
 def main():
     """main"""
