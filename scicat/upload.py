@@ -38,6 +38,9 @@ class Upload:
         self.dataset = {
             "pid": "xlfghz",
             "owner": self.owner,
+            "investigator": self.owner,
+            "inputDatasets": ["string"],
+            "usedSoftware": ["Mantid v4"],
             "ownerEmail": self.email,
             "contactEmail": self.email,
             "sourceFolder": "/dram/",
