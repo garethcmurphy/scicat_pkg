@@ -39,6 +39,7 @@ class Upload:
             "pid": "xlfghz",
             "owner": self.owner,
             "investigator": self.owner,
+            "principalInvestigator": self.owner,
             "inputDatasets": ["string"],
             "usedSoftware": ["Mantid v4"],
             "ownerEmail": self.email,
