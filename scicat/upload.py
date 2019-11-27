@@ -66,7 +66,7 @@ class Upload:
         """create uri"""
         # login = Login()
         # token = login.login()
-        self.uri = os.path.join(self.api, "Datasets") + \
+        self.uri = os.path.join(self.api, "DerivedDatasets") + \
             "?access_token=" + self.token
         print(self.uri)
 
