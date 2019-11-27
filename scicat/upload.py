@@ -134,6 +134,7 @@ def upload(name):
     print(dataset)
 
 def widget():
+    """widget"""
     uploader = Upload()
     uploader.widget()
 
