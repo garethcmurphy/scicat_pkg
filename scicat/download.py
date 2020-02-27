@@ -101,9 +101,14 @@ class SciCat:
         return extract_location, file_names
 
 
-def download():
+def download(base1, files1):
     """download"""
-    pass
+    # Login
+    scicat_inst = SciCat(username='brightness', password=sys.argv[1])
+    # Download files
+    file_location_on_disk, file_names = scicat_inst.download(base1, files1)
+    # Print their location
+    print(file_location_on_disk, file_names)
 
 
 if __name__ == "__main__":
@@ -127,7 +132,6 @@ if __name__ == "__main__":
 
     # Login
     scicat_instance = SciCat(username='brightness', password=sys.argv[1])
-    print("lgging in")
     # Download files
     file_location_on_disk, file_names = scicat_instance.download(base, files)
     # Print their location
