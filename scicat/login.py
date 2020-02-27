@@ -6,6 +6,8 @@ import getpass
 import requests
 import keyring
 
+import ipywidgets
+
 from scicat import api
 
 
@@ -60,6 +62,28 @@ class LoginManager:
             # print("token", token)
         self.token = token
         return token
+
+    def loginw(self):
+        """login widget"""
+        user = os.environ['USER']
+        self.username = ipywidgets.Text(
+            value=user, placeholder=user, description='User:', disabled=False)
+        password_widget = ipywidgets.Password(
+            description='Password:', placeholder='ess password')
+        login_interactive = ipywidgets.interactive(
+            self.helper1, user=self.username, password=password_widget)
+        button = ipywidgets.Button(description="Login")
+        self.output = ipywidgets.Output()
+        button.on_click(self.on_button_clicked)
+
+    def helper1(self, user, password):
+        """helper"""
+
+    def on_button_clicked(self):
+        """on button clicked"""
+        with self.output:
+            print("Logging into scicat with username ", self.username.value)
+            self.login()
 
     def info(self):
         """get info"""

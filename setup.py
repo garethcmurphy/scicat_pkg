@@ -14,6 +14,8 @@ setuptools.setup(
     packages=['scicat'],
     install_requires=[
         "requests",
+        "keyring",
+        "ipywidgets"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
